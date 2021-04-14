@@ -22,7 +22,7 @@ void main()
     char     cmd             = 0;
     uint32_t pulse_cnt       = 0;
     float    intensy_static  = 0;
-    float    intensy_dyanmic = 0;
+    float    intensy_dynamic = 0;
     uint8_t  sensor_address  = 0;
     
     if ((fd = open(bus, O_RDWR)) < 0) {
@@ -57,11 +57,11 @@ void main()
     
     pulse_cnt       = (rbuf[9] << 8) | rbuf[10];
     intensy_static  = (((uint32_t)rbuf[6] << 16) | ((uint16_t)rbuf[7] << 8) | rbuf[8]) / 10.0;
-    intensy_dyanmic = (((uint32_t)rbuf[3] << 16) | ((uint16_t)rbuf[4] << 8) | rbuf[5]) / 10.0;
+    intensy_dynamic = (((uint32_t)rbuf[3] << 16) | ((uint16_t)rbuf[4] << 8) | rbuf[5]) / 10.0;
      
     fprintf(stderr, "cnt: %d\n",     pulse_cnt);
     fprintf(stderr, "static: %f\n",  intensy_static);
-    fprintf(stderr, "dynamic: %f\n", intensy_dyanmic);
+    fprintf(stderr, "dynamic: %f\n", intensy_dynamic);
     
     //fprintf(stderr, "addr: %d\n", rbuf[16]);
     //fprintf(stderr, "sens: %d\n", rbuf[18]);
